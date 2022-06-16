@@ -15,7 +15,7 @@ async fn main() -> Result<(), Error> {
                                             .lines()
                                             .filter(|x| !x.is_empty())
                                             .filter(|x| !x.starts_with("#"))
-                                            .map(|x| x.parse().unwrap())
+                                            .map(|x| x.trim().parse().unwrap())
                                             .collect();
 
     println!("Loaded {} ids:", ultimora_cringe.len());
