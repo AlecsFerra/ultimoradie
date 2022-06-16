@@ -12,6 +12,8 @@ async fn main() -> Result<(), Error> {
     ultimora_cringe.insert(-1001067340713); // https://t.me/ultimora
     ultimora_cringe.insert(-1001398867876); // https://t.me/ultimoralive
     ultimora_cringe.insert(-1001056710815); // https://t.me/ultimora24
+    ultimora_cringe.insert(-1001485363608); // https://t.me/ultimorapolitics
+    ultimora_cringe.insert(-1001142744746); // https://t.me/ultimorafocus
 
     let mut stream = api.stream();
     while let Some(update) = stream.next().await {
