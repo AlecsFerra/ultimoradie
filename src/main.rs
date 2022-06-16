@@ -1,4 +1,4 @@
-use std::{collections::HashSet, env};
+use std::{collections::HashSet, env, fs};
 
 use futures::StreamExt;
 use telegram_bot::*;
@@ -8,13 +8,23 @@ async fn main() -> Result<(), Error> {
     let token = env::var("TELEGRAM_BOT_TOKEN").expect("TELEGRAM_BOT_TOKEN not set");
     let api = Api::new(token);
 
-    let mut ultimora_cringe = HashSet::new();
-    ultimora_cringe.insert(-1001067340713); // https://t.me/ultimora
-    ultimora_cringe.insert(-1001398867876); // https://t.me/ultimoralive
-    ultimora_cringe.insert(-1001056710815); // https://t.me/ultimora24
-    ultimora_cringe.insert(-1001485363608); // https://t.me/ultimorapolitics
-    ultimora_cringe.insert(-1001142744746); // https://t.me/ultimorafocus
+    println!("Starting");
 
+    let ultimora_cringe: HashSet<i64> = fs::read_to_string("ultimora_cringe.txt")
+                                            .expect("ultimora_cringe.txt not found")
+                                            .lines()
+                                            .filter(|x| !x.is_empty())
+                                            .filter(|x| !x.starts_with("#"))
+                                            .map(|x| x.parse().unwrap())
+                                            .collect();
+
+    println!("Loaded {} ids:", ultimora_cringe.len());
+    for &id in &ultimora_cringe {
+        println!("{}", id);
+    }
+
+
+    println!("Started polling");
     let mut stream = api.stream();
     while let Some(update) = stream.next().await {
         match update {
