@@ -1,1 +1,1 @@
-web: ./target/release/ultimoradie
+worker: ./target/release/ultimoradie
