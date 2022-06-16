@@ -11,6 +11,7 @@ async fn main() -> Result<(), Error> {
     let mut ultimora_cringe = HashSet::new();
     ultimora_cringe.insert(-1001067340713); // https://t.me/ultimora
     ultimora_cringe.insert(-1001398867876); // https://t.me/ultimoralive
+    ultimora_cringe.insert(-1001056710815); // https://t.me/ultimora24
 
     let mut stream = api.stream();
     while let Some(update) = stream.next().await {
